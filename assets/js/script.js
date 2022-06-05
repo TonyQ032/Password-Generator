@@ -4,21 +4,16 @@ var generateBtn = document.querySelector("#generate");
 // Code for popup window
 var popup = document.querySelector("#popup");
 var popupSubmit = document.querySelector("#submit-button");
+var popupX = document.querySelector("#popup-x");
 
-// Opens popup (which can also be closed by pressing the escape key, can be submitted using enter)
-// can be improved
+// Opens popup 
 function openPopup() {
   popup.setAttribute("id", "popup-appear");
-  document.addEventListener("keydown", function(event) {
-    if (event.key === "Escape") {
-      popup.removeAttribute("id", "popup-appear");
-      return;
-    } else if (event.key === "Enter") {
-      generatePassword();
-    } else {
-      console.log("No escape key detected");
-    }
-  })
+};
+
+// Closes popup
+function closePopup() {
+  popup.removeAttribute("id", "popup-appear");
 };
 
 function generatePassword() {
@@ -39,9 +34,7 @@ function generatePassword() {
   } else if (passwordLength > 128) {
     alert("The password must be shorter than 128 characters");
     return;
-  } else {
-    console.log(passwordLength);
-  };
+  } else {};
 
   // Checks and assigns what parameters the user has assigned for the password
   var includeUpperCase = document.querySelector("#include-uppercase").checked;
@@ -81,8 +74,25 @@ function generatePassword() {
   popup.removeAttribute("id", "popup-appear");
 };
 
-// Opens popup menu with all the selectors
-generateBtn.addEventListener("click", openPopup); 
+// (With Esc) Exits popup window without generating password 
+// (With Enter) Generates password if popup open, otherwise opens popup
+document.addEventListener("keydown", function(event) {
+  let popUpExists = document.getElementById("popup-appear");
+  if (event.key === "Escape") {
+    popup.removeAttribute("id", "popup-appear");
+    return;
+  } else if (event.key === "Enter" && popUpExists) {
+    generatePassword();
+  } else if (event.key === "Enter" && !popUpExists) {
+    openPopup();
+  } else {}
+});
 
-// Closes popup menu and generates password
-popupSubmit.addEventListener("click", generatePassword); 
+// Opens popup menu with all the selectors
+generateBtn.addEventListener("click", openPopup);
+
+// Closes popup menu when x is clicked
+popupX.addEventListener("click", closePopup);
+
+// Closes popup menu (with Esc key) and generates password (with enter/return key)
+popupSubmit.addEventListener("click", generatePassword);
