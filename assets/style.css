@@ -93,6 +93,7 @@ button[disabled] {
   background: #c0c7cf;
 }
 
+/* Popup styling */
 .popup {
   width: 400px;
   background: #fff;
@@ -104,6 +105,15 @@ button[disabled] {
   border: 1px solid black;
   padding: 3px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: none;
+}
+
+#popup-appear {
+  display: block;
+}
+
+li {
+  list-style: none;
 }
 
 #password-length {
