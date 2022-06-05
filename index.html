@@ -26,6 +26,29 @@
         </div>
         <div class="card-footer">
           <button id="generate" class="btn">Generate Password</button>
+          <div class="popup">
+            <h2>Select your password criteria:</h2>
+            
+            <h3>Amount of characters:</h3>
+            <p>(Must be between 8 and 128)</p>
+            <input type="number" id="password-length" min="8" max="128" value="8">
+  
+            <h3>Include: </h3>
+            <p>(Must select at least one)</p>
+            <input type="checkbox" id="uppercase" name="uppercase" value="uppercase">
+            <label for="uppercase">Uppercase letters</label>
+  
+            <input type="checkbox" id="include-lowercase" name="lowercase" value="lowercase">
+            <label for="lowercase">Lowercase letters</label>
+  
+            <input type="checkbox" id="include-numbers" name="numbers" value="numbers">
+            <label for="numbers">Numbers</label>
+  
+            <input type="checkbox" id="include-special" name="special" value="special">
+            <label for="special">Special characters</label>
+   
+            <button type="button" class="btn">Submit</button>
+          </div>
         </div>
       </div>
     </div>

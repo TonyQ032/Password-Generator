@@ -7,8 +7,11 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
+  //asigns whatever value passwordText has as a protected password
 }
 
+
+
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", writePassword); 
+// when "Generate Password" button is clicked, it runs the function 'writePassword()'

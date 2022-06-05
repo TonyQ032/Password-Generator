@@ -93,6 +93,23 @@ button[disabled] {
   background: #c0c7cf;
 }
 
+.popup {
+  width: 400px;
+  background: #fff;
+  border-radius: 6px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid black;
+  padding: 3px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#password-length {
+  font-size: 16px;
+}
+
 .float-right {
   float: right;
 }
