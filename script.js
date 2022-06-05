@@ -5,8 +5,20 @@ var generateBtn = document.querySelector("#generate");
 var popup = document.querySelector("#popup");
 var popupSubmit = document.querySelector("#submit-button");
 
+// Opens popup (which can also be closed by pressing the escape key, can be submitted using enter)
+// can be improved
 function openPopup() {
   popup.setAttribute("id", "popup-appear");
+  document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+      popup.removeAttribute("id", "popup-appear");
+      return;
+    } else if (event.key === "Enter") {
+      generatePassword();
+    } else {
+      console.log("No escape key detected");
+    }
+  });
 }
 
 function generatePassword() {
@@ -17,20 +29,16 @@ function generatePassword() {
   let finalPassword = ""
   let characters = ""
 
-// Getting Password length from user
+  // Getting Password length from user
 
   var passwordLength = Math.round(parseInt(document.querySelector("#password-length").value));
   if (passwordLength < 8) {
-    //should tell the user the criteria isn't met
-      // add a message in red HTML <p> tag
+    alert("The password must be at least 8 characters");
     return;
   } else if (passwordLength > 128) {
-     //should tell the user the criteria isn't met
-      // add a message in red HTML <p> tag
-      return;
+    alert("The password must be shorter than 128 characters");
+    return;
   } else {
-    //should accept user input
-    console.log(typeof passwordLength);
     console.log(passwordLength);
   };
 
@@ -42,10 +50,6 @@ function generatePassword() {
   var includeLowerCase = document.querySelector("#include-lowercase").checked;
   var includeNumbers = document.querySelector("#include-numbers").checked;
   var includeSpecial = document.querySelector("#include-special").checked;
-
-  //debugging purposes, this can be deleted
-  var userConditions = [includeUpperCase, includeLowerCase, includeNumbers, includeSpecial];
-  console.log(userConditions);
 
   //works but can optimized into a for loop
   if (includeUpperCase) {
@@ -77,7 +81,7 @@ function generatePassword() {
   };
 
   if (!includeUpperCase && !includeLowerCase && !includeNumbers && !includeSpecial) {
-    console.log("Please select a criteria");
+    alert("Password must have at least one type of character.");
     return;
   } else {
     console.log("Criteria accepted")
@@ -85,33 +89,21 @@ function generatePassword() {
 
   console.log(characters);
 
-  // this next section should randomly assign each character in a string
+  // This loop assigns a random letter from the user's chosen criteria, 
+  // for each letter of the user's new password
 
-  console.log(characters.length);
-  console.log(Math.floor(Math.random() * characters.length));
+  for (var i = 0; i < passwordLength; i ++) {
+    finalPassword += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
 
-  console.log(characters.charAt(0));
+  console.log(finalPassword);
 
-  
+  document.querySelector("textarea").textContent = "";
+  document.querySelector("textarea").textContent += finalPassword;
 
-
-
-
-
-
-
-  //this should be the final line. Makes the popup disappear after generating password
+  //This should be the final line. Makes the popup disappear after generating password
   popup.removeAttribute("id", "popup-appear");
 }
 
-
-
-
-
-
-
 generateBtn.addEventListener("click", openPopup); 
 popupSubmit.addEventListener("click", generatePassword); 
-
-
-// when "Generate Password" button is clicked, it runs the function 'writePassword()'
