@@ -112,6 +112,16 @@ button[disabled] {
   display: block;
 }
 
+ul {
+  padding-inline-start: 0;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin-left: 30%;
+}
+
 li {
   list-style: none;
 }
@@ -158,6 +168,10 @@ li {
 
   #submit-button {
     margin-bottom: 10px;
+  }
+
+  ul {
+    margin-left: 20%;
   }
 
   #password {

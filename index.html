@@ -25,8 +25,6 @@
           ></textarea>
         </div>
         <div class="card-footer">
-          <!-- Both buttons have a JS attribute "onclick". This should be replaced in JS ASAP -->
-          <!-- preferably with addEventListener('click') -->
           <button id="generate" class="btn">Generate Password</button>
           <div class="popup" id="popup">
             <h2>Select your password criteria:</h2>
@@ -40,19 +38,19 @@
             <ul>
               <li>
                 <input type="checkbox" id="include-uppercase" name="uppercase" value="uppercase">
-                <label for="uppercase">Uppercase letters</label>
+                <label for="include-uppercase">Uppercase letters</label>
               </li>
               <li>
                 <input type="checkbox" id="include-lowercase" name="lowercase" value="lowercase">
-                <label for="lowercase">Lowercase letters</label>
+                <label for="include-lowercase">Lowercase letters</label>
               </li>
               <li>
                 <input type="checkbox" id="include-numbers" name="numbers" value="numbers">
-                <label for="numbers">Numbers</label>
+                <label for="include-numbers">Numbers</label>
               </li>
               <li>
                 <input type="checkbox" id="include-special" name="special" value="special">
-                <label for="special">Special characters</label>
+                <label for="include-special">Special characters</label>
               </li>
             </ul>
             <button type="button" id="submit-button" class="btn">Submit</button>
