@@ -152,6 +152,14 @@ li {
     padding: 10px 15px;
   }
 
+  .popup {
+    width: 300px;
+  }
+
+  #submit-button {
+    margin-bottom: 10px;
+  }
+
   #password {
     font-size: 1rem;
   }

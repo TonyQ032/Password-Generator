@@ -1,7 +1,7 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-// Code for popup
+// Code for popup window
 var popup = document.querySelector("#popup");
 var popupSubmit = document.querySelector("#submit-button");
 
@@ -18,10 +18,11 @@ function openPopup() {
     } else {
       console.log("No escape key detected");
     }
-  });
-}
+  })
+};
 
 function generatePassword() {
+  // Variables used throughout this function to generate password
   const upperCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
   const lowerCaseLetters = upperCaseLetters.toLowerCase();
   const passwordNumbers = "0123456789"
@@ -29,8 +30,8 @@ function generatePassword() {
   let finalPassword = ""
   let characters = ""
 
-  // Getting Password length from user
-
+  // Getting Password length from user 
+  // If length is between 8 and 128 characters, moves forward
   var passwordLength = Math.round(parseInt(document.querySelector("#password-length").value));
   if (passwordLength < 8) {
     alert("The password must be at least 8 characters");
@@ -42,68 +43,46 @@ function generatePassword() {
     console.log(passwordLength);
   };
 
-  // if password length is between 8-128 characters, move forward
-  // User conditions
-
-  // checks to see the state of the checkboxes in the popup form
+  // Checks and assigns what parameters the user has assigned for the password
   var includeUpperCase = document.querySelector("#include-uppercase").checked;
   var includeLowerCase = document.querySelector("#include-lowercase").checked;
   var includeNumbers = document.querySelector("#include-numbers").checked;
   var includeSpecial = document.querySelector("#include-special").checked;
+  
+  // Lists used in the upcoming loop
+  var includePossibilities = [includeUpperCase, includeLowerCase, includeNumbers, includeSpecial];
+  var passwordConditions = [upperCaseLetters, lowerCaseLetters, passwordNumbers, specialCharacters];
 
-  //works but can optimized into a for loop
-  if (includeUpperCase) {
-    characters += upperCaseLetters;
-    console.log("Selected upper case letters");
-  } else {
-    console.log("No upper case letters");
+  // Loop iterates 4 times and checks the state of each user-selected condition
+  // Adds the selected conditions to the possible user password
+  for (var i = 0; i < 4; i++) {
+    if (includePossibilities[i]) {
+      characters += passwordConditions[i];
+    } else {}
   };
 
-  if (includeLowerCase) {
-    characters += lowerCaseLetters;
-    console.log("Selected lower case letters");
-  } else {
-    console.log("No lower case letters");
-  };
-
-  if (includeNumbers) {
-    characters += passwordNumbers;
-    console.log("Selected numbers");
-  } else {
-    console.log("No numbers");
-  };
-
-  if (includeSpecial) {
-    characters += specialCharacters;
-    console.log("Selected special characters");
-  } else {
-    console.log("No special characters");
-  };
-
+  // Ensures that there is at least one condition selected
   if (!includeUpperCase && !includeLowerCase && !includeNumbers && !includeSpecial) {
     alert("Password must have at least one type of character.");
     return;
-  } else {
-    console.log("Criteria accepted")
-  }
-
-  console.log(characters);
+  } else {};
 
   // This loop assigns a random letter from the user's chosen criteria, 
   // for each letter of the user's new password
-
   for (var i = 0; i < passwordLength; i ++) {
     finalPassword += characters.charAt(Math.floor(Math.random() * characters.length));
-  }
+  };
 
-  console.log(finalPassword);
-
+  // Clears the text area and then adds the newly generated password to it
   document.querySelector("textarea").textContent = "";
   document.querySelector("textarea").textContent += finalPassword;
 
-  //This should be the final line. Makes the popup disappear after generating password
+  // Makes the popup disappear after generating password
   popup.removeAttribute("id", "popup-appear");
-}
+};
 
+// Opens popup menu with all the selectors
 generateBtn.addEventListener("click", openPopup); 
+
+// Closes popup menu and generates password
 popupSubmit.addEventListener("click", generatePassword); 
